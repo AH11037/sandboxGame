@@ -104,7 +104,6 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Users\abdir\Coding\Packages &amp; Stuff\SFML-3.0.2-windows-vc17-64-bit\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,9 +129,10 @@ gdi32.lib
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\abdir\Coding\Packages &amp; Stuff\SFML-3.0.2-windows-vc17-64-bit\SFML-3.0.2\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\abdir\Coding\Packages &amp; Stuff\SFML-3.0.2-windows-vc17-64-bit\SFML-3.0.2\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;user32.lib;advapi32.lib;ole32.lib;ws2_32.lib

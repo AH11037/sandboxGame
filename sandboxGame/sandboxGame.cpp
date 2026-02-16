@@ -7,6 +7,7 @@
 #include "gunpowder.h"
 #include "fire.h"
 #include "atari-800.hpp"
+#include <Windows.h>
 
 std::unique_ptr<pixel> createPixel(int type, sf::Vector2f pos) {
     switch (type) {
@@ -38,8 +39,6 @@ int main() {
 
     while (window.isOpen()) {
         window.setFramerateLimit(60);
-        sf::Text text(font, names[x], 30);
-        text.setPosition({ 50.f, 50.f });
 
         while (const std::optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>()) window.close();
@@ -51,8 +50,8 @@ int main() {
         }
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
             positions = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
-            int xIndex = std::clamp(int(round(positions.x / 10)), 0, 74);
-            int yIndex = std::clamp(int(round(positions.y / 10)), 0, 74);
+            int xIndex = std::clamp(static_cast<int>(std::round(positions.x / 10)), 0, 74);
+            int yIndex = std::clamp(static_cast<int>(std::round(positions.y / 10)), 0, 74);
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
@@ -96,10 +95,13 @@ int main() {
             }
             pixels[i]->drawPixel(window);
         }
-
-
+        sf::Text text(font, names[x], 30);
+        text.setPosition({ 50.f, 50.f });
         text.setFillColor(colours[x]);
         window.draw(text);
         window.display();
     }
+}
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+    return main();
 }
