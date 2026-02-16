@@ -8,19 +8,19 @@ This is a simple 2D particle falling-sand game built using C++ & SFML. This is n
 - A working neighbor-checking system for adjacent grid squares
 - Basic cellular automata logic
 ## Screenshot
-<img width="379" height="400" alt="{45028B89-34D3-4D3E-920D-DBA5E4CFAF93}" src="https://github.com/user-attachments/assets/48fedee7-3245-468a-acd7-a97c82cb507d" /> <br>
+<img width="400" alt="{45028B89-34D3-4D3E-920D-DBA5E4CFAF93}" src="https://github.com/user-attachments/assets/48fedee7-3245-468a-acd7-a97c82cb507d" /> <br>
 ## Features
-Currently implemented elements:
-- $${\color{brown}Dirt}$$
-  
-- $${\color{blue}Water}$$
-  
-- $${\color{grey}Smoke}$$
-  
+### Currently implemented elements:
+- $${\color{brown}Dirt}$$ (you can also see both the narrow and wide mouse placement modes) <br>
+  <img src="assets/DirtVid.gif" width="400"><br>
+- $${\color{blue}Water}$$<br>
+  <img src="assets/WaterVid.gif" width="400"><br>
+- $${\color{grey}Smoke}$$<br>
+  <img src="assets/SmokeVid.gif" width="400"><br>
 - $${\color{green}Gunpowder}$$ (gunpowder is green because I ran out of colours)
-- $${\color{orange}Fire}$$
-
-Other features:
+- $${\color{orange}Fire}$$<br>
+  <img src="assets/FireVid.gif" width="400"><br>
+### Other features:
 - Custom SFML font using Atari 800–inspired typography
 - Custom window icon loaded directly from resources
 - 75x75 grid-based simulation
