@@ -26,7 +26,7 @@ This is a simple 2D particle falling-sand game built using C++ & SFML. This is n
 - 75x75 grid-based simulation
 - Object-oriented particle system
 ## Downloading & Running
-1. Go to the Releases section
+1. Go to the `Releases` section
 2. Download the most recent `.exe`
 3. Run it
 That’s it.
