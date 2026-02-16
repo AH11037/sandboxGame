@@ -8,6 +8,26 @@
 #include "fire.h"
 #include "atari-800.hpp"
 #include <Windows.h>
+#include "resource.h"
+
+#include <SFML/Graphics.hpp>
+#include <Windows.h>
+#include <iostream>
+
+sf::Image LoadPngIconFromResource() {
+    HRSRC hRes = FindResource(NULL, MAKEINTRESOURCE(IDR_ICON1), RT_RCDATA);
+    if (!hRes) { std::cerr << "Failed to find PNG resource\n"; return {}; }
+    HGLOBAL hData = LoadResource(NULL, hRes);
+    if (!hData) { std::cerr << "Failed to load PNG resource\n"; return {}; }
+    DWORD size = SizeofResource(NULL, hRes);
+    void* pData = LockResource(hData);
+    if (!pData) { std::cerr << "Failed to lock PNG resource\n"; return {}; }
+    sf::Image icon;
+    if (!icon.loadFromMemory(pData, size)) {
+        std::cerr << "Failed to load PNG from memory\n";
+    }
+    return icon;
+}
 
 std::unique_ptr<pixel> createPixel(int type, sf::Vector2f pos) {
     switch (type) {
@@ -36,6 +56,11 @@ int main() {
     std::map<int, sf::Color> colours = { {0, {255,255,255}}, { 1, { 102, 51, 0 } } , {2, { 0, 102, 255 }}, {3, {58,56,64}} ,{4, {0,204,51}}, {5, {255,116,0}} };
     std::string names[6] = { "Blank (^_^;)","Dirt", "Water", "Smoke", "Gunpowder", "Fire" };
     sf::RenderWindow window(sf::VideoMode({ 750, 750 }), "Sandbox", sf::Style::Titlebar | sf::Style::Close);
+
+    sf::Image icon = LoadPngIconFromResource();
+    if (icon.getSize().x > 0) {
+        window.setIcon({static_cast<unsigned int>(icon.getSize().x),static_cast<unsigned int>(icon.getSize().y)}, icon.getPixelsPtr());
+    }
 
     while (window.isOpen()) {
         window.setFramerateLimit(60);

@@ -156,8 +156,16 @@ gdi32.lib
     <ClInclude Include="gunpowder.h" />
     <ClInclude Include="physics.h" />
     <ClInclude Include="pixel.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="smoke.h" />
     <ClInclude Include="water.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Downloads\Icon 1.ico" />
+    <Image Include="..\..\..\Downloads\icon1png.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
