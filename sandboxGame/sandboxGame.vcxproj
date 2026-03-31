@@ -135,37 +135,23 @@ gdi32.lib
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\abdir\Coding\Packages &amp; Stuff\SFML-3.0.2-windows-vc17-64-bit\SFML-3.0.2\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;user32.lib;advapi32.lib;ole32.lib;ws2_32.lib
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;sfml-main.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;user32.lib;advapi32.lib;ole32.lib;ws2_32.lib
 ;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dirt.cpp" />
-    <ClCompile Include="fire.cpp" />
-    <ClCompile Include="gunpowder.cpp" />
+    <ClCompile Include="globals.cpp" />
     <ClCompile Include="physics.cpp" />
-    <ClCompile Include="pixel.cpp" />
     <ClCompile Include="sandboxGame.cpp" />
-    <ClCompile Include="smoke.cpp" />
-    <ClCompile Include="water.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="atari-800.hpp" />
-    <ClInclude Include="dirt.h" />
-    <ClInclude Include="fire.h" />
-    <ClInclude Include="gunpowder.h" />
+    <ClInclude Include="globals.h" />
     <ClInclude Include="physics.h" />
-    <ClInclude Include="pixel.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="smoke.h" />
-    <ClInclude Include="water.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Downloads\Icon 1.ico" />
-    <Image Include="..\..\..\Downloads\icon1png.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,19 +2,9 @@
 #define PHYSICS_H
 #include <SFML/Graphics.hpp>
 
-class solid {
+class gravityClass {
 public:
-    void gravity(int grid[75][75], sf::RectangleShape& shape, int type, sf::Vector2i& coordinates);
-};
-
-class liquid {
-public:
-    void gravity(int grid[75][75], sf::RectangleShape& shape, int type, sf::Vector2i& coordinates);
-};
-
-class gas {
-public:
-    void gravity(int grid[75][75], sf::RectangleShape& shape, int type, sf::Vector2i& coordinates);
+    static void gravity(std::vector<std::vector<std::vector<int>>>& grid, sf::Vector2i coordinates, int gravity, int state, std::vector<std::vector<bool>>& moved);
 };
 
 #endif

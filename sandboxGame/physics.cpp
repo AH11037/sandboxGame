@@ -1,126 +1,63 @@
 #include <SFML/Graphics.hpp>
 #include "physics.h"
+#include "globals.h"
 
-void solid::gravity(int grid[75][75], sf::RectangleShape& shape, int type, sf::Vector2i& coordinates) {
+void gravityClass::gravity(std::vector<std::vector<std::vector<int>>>& grid, sf::Vector2i coordinates, int grav, int state, std::vector<std::vector<bool>>& moved) {
+    int x = coordinates.x;
+    int y = coordinates.y;
 
-    if (coordinates.x < 0 || coordinates.x >= 75 || coordinates.y < 0 || coordinates.y >= 75) return;
+    if (x < 0 || x >= gridSize || y < 0 || y >= gridSize) return;
+    if (state == 2) return;
+    if (moved[x][y]) return;
+    if (grid[x][y][0] == 0) return;
 
-    if (coordinates.y + 1 < 75 && (grid[coordinates.x][coordinates.y + 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y += 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    else if (coordinates.y + 1 < 75 && coordinates.x - 1 >= 0 && (grid[coordinates.x - 1][coordinates.y + 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y += 1;
-        coordinates.x -= 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    else if (coordinates.y + 1 < 75 && coordinates.x + 1 < 75 && (grid[coordinates.x + 1][coordinates.y + 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y += 1;
-        coordinates.x += 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-}
-
-void liquid::gravity(int grid[75][75], sf::RectangleShape& shape, int type, sf::Vector2i& coordinates) {
-    if (coordinates.x < 0 || coordinates.x >= 75 || coordinates.y < 0 || coordinates.y >= 75) return;
-    if (coordinates.y + 1 < 75 && (grid[coordinates.x][coordinates.y + 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y += 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    else if (coordinates.y + 1 < 75 && coordinates.x - 1 >= 0 && (grid[coordinates.x - 1][coordinates.y + 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y += 1;
-        coordinates.x -= 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    else if (coordinates.y + 1 < 75 && coordinates.x + 1 < 75 && (grid[coordinates.x + 1][coordinates.y + 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y += 1;
-        coordinates.x += 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    int randNum = rand() % 2;
-    if (randNum == 0) {
-        if (coordinates.x - 1 >= 0 && (grid[coordinates.x - 1][coordinates.y] == 0)) {
-            grid[coordinates.x][coordinates.y] = 0;
-            coordinates.x -= 1;
-            shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-            grid[coordinates.x][coordinates.y] = type;
+    // Down or up
+    if (y + grav >= 0 && y + grav < gridSize) {
+        if (grid[x][y + grav][0] == 0 || grid[x][y][1] > grid[x][y + grav][1]) {
+            std::swap(grid[x][y], grid[x][y + grav]);
+            moved[x][y + grav] = true;
             return;
         }
-        return;
     }
-    else {
-        if (coordinates.x + 1 < 75 && (grid[coordinates.x + 1][coordinates.y] == 0)) {
-            grid[coordinates.x][coordinates.y] = 0;
-            coordinates.x += 1;
-            shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-            grid[coordinates.x][coordinates.y] = type;
+
+    // Down-left or up-left
+    if (x - 1 >= 0 && y + grav >= 0 && y + grav < gridSize) {
+        if (grid[x - 1][y + grav][0] == 0 || grid[x][y][1] > grid[x - 1][y + grav][1]) {
+            std::swap(grid[x][y], grid[x - 1][y + grav]);
+            moved[x - 1][y + grav] = true;
             return;
         }
-    return;
     }
-}
-void gas::gravity(int grid[75][75], sf::RectangleShape& shape, int type, sf::Vector2i& coordinates) {
-    if (coordinates.x < 0 || coordinates.x >= 75 || coordinates.y < 0 || coordinates.y >= 75) return;
-    if (coordinates.y - 1 >= 0 && (grid[coordinates.x][coordinates.y - 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y -= 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    else if (coordinates.y - 1 >= 0 && coordinates.x - 1 >= 0 && (grid[coordinates.x - 1][coordinates.y - 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y -= 1;
-        coordinates.x -= 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    else if (coordinates.y - 1 >= 0 && coordinates.x + 1 < 75 && (grid[coordinates.x + 1][coordinates.y - 1] == 0)) {
-        grid[coordinates.x][coordinates.y] = 0;
-        coordinates.y -= 1;
-        coordinates.x += 1;
-        shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-        grid[coordinates.x][coordinates.y] = type;
-        return;
-    }
-    int randNum = rand() % 2;
-    if (randNum == 0) {
-        if (coordinates.x - 1 >= 0 && (grid[coordinates.x - 1][coordinates.y] == 0)) {
-            grid[coordinates.x][coordinates.y] = 0;
-            coordinates.x -= 1;
-            shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-            grid[coordinates.x][coordinates.y] = type;
+
+    // Down-right or up-right
+    if (x + 1 < gridSize && y + grav >= 0 && y + grav < gridSize) {
+        if (grid[x + 1][y + grav][0] == 0 || grid[x][y][1] > grid[x + 1][y + grav][1]) {
+            std::swap(grid[x][y], grid[x + 1][y + grav]);
+            moved[x + 1][y + grav] = true;
             return;
         }
-        return;
     }
-    else {
-        if (coordinates.x + 1 < 75 && (grid[coordinates.x + 1][coordinates.y] == 0)) {
-            grid[coordinates.x][coordinates.y] = 0;
-            coordinates.x += 1;
-            shape.setPosition(sf::Vector2f(coordinates.x * 10, coordinates.y * 10.f));
-            grid[coordinates.x][coordinates.y] = type;
-            return;
+
+    if (state) {
+        int randNum = rand() % 2;
+
+        // Left
+        if (randNum == 0 && x - 1 >= 0) {
+            if (grid[x - 1][y][0] == 0 || grid[x][y][1] > grid[x - 1][y][1]) {
+                std::swap(grid[x][y], grid[x - 1][y]);
+                moved[x - 1][y] = true;
+                return;
+            }
         }
-        return;
+
+        // Right
+        else if (randNum == 1 && x + 1 < gridSize) {
+            if (grid[x + 1][y][0] == 0 || grid[x][y][1] > grid[x + 1][y][1]) {
+                std::swap(grid[x][y], grid[x + 1][y]);
+                moved[x + 1][y] = true;
+                return;
+            }
+        }
     }
+    moved[x][y] = true;
 }

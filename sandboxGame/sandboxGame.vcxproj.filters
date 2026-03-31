@@ -18,25 +18,10 @@
     <ClCompile Include="sandboxGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pixel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dirt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="water.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="smoke.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gunpowder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fire.cpp">
+    <ClCompile Include="globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,28 +29,13 @@
     <ClInclude Include="atari-800.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pixel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dirt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="water.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="smoke.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gunpowder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -73,13 +43,5 @@
     <ResourceCompile Include="Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Downloads\Icon 1.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\Downloads\icon1png.png">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
 </Project>
