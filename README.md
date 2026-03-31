@@ -7,6 +7,8 @@ This is a simple 2D particle falling-sand game built using C++ & SFML. This is n
 - an approximation of gravity for solids, liquids and gases
 - A working neighbor-checking system for adjacent grid squares
 - Basic cellular automata logic
+
+Warning ⚠️ - **THE FOLLOWING IMAGES ARE ALL OUT OF DATE. I'M NOT BOTHERED TO FIX THEM**
 ## Screenshot
 <img width="400" alt="{45028B89-34D3-4D3E-920D-DBA5E4CFAF93}" src="https://github.com/user-attachments/assets/48fedee7-3245-468a-acd7-a97c82cb507d" /> <br>
 ## Features
@@ -22,20 +24,22 @@ This is a simple 2D particle falling-sand game built using C++ & SFML. This is n
   <img src="assets/FireVid.gif" width="400"><br>
 ### Other features:
 - Custom SFML font using Atari 800–inspired typography
-- Custom window icon loaded directly from resources
 - 75x75 grid-based simulation
 - Object-oriented particle system
 ## Downloading & Running
 1. Go to the `Releases` section
 2. Download the most recent `.exe`
 3. Run it
+
 That’s it.
 ## Controls
 - `Left-Click`: Place pixels
 - Hold `Left-Shift`: Increase placement radius
+  - **NEW** `Left Control` & `Left Shift`: Increase placement radius even more
 - `Space`: Cycle through pixel types
+- **NEW** `Number keys 1 to 5`: Cycle through pixel types
 ## How It Works
-Genuine sorcery and pure nonsense.
+Genuine sorcery and pure nonsense with a pinch of tomfoolery.
 
 There is a 75×75 grid of squares. When the left mouse button is pressed, a pixel object is created and placed into the corresponding grid cell.
 
@@ -45,28 +49,25 @@ From there:
 - Movement rules are applied based on type (solid, liquid, gas)
 - Transformations (like burning) can occur
 
-It’s essentially cellular automata + a **LOT** of classes.
+<del>It’s essentially cellular automata + a **LOT** of classes.</del> <br>
+Not anymore, it is now all numbers-based on a grid.
 ## What I Learned
 - How to use SFML to render graphics
 - The basics of cellular automata
 - Managing grid-based simulations
 - Handling object-oriented design in C++
 ## Known bugs
-- No density/weight system
-  - $${\color{brown}Dirt}$$ currently floats on $${\color{grey}Smoke}$$
-  - I am not entirely sure how to fix this yet.
-- A $${\color{white}Blank}$$ pixel appears when cycling with Space
-  - This exists due to how the pixel type switching works.
-  - Please ignore it.
-  - I will fix it when motivation strikes.
-- The increased selection mode not being a uniform shape
-  - I genuinely cannot tell you how this occured
+- <del>No density/weight system </del>
+- <del>A blank pixel appears when cycling with Space </del>
+- <del>The increased selection mode not being a uniform shape </del>
+  - Only occurs with $${\color{grey}Smoke}$$. I am not sure how to fix this
 ## Future Improvements
-- Seperate the burning mechanic into a seperate class (will make my life easier in the future)
-- Increase the grid size
-  - Convert the grid from being array-based into a 2D vector
-- Implementing density-based gravity instead of uniform gravity
-- Streamlining the gravity calculations to be one class instead of 3
+- <del>Seperate the burning mechanic into a seperate class (will make my life easier in the future) </del>
+- <del>Increase the grid size </del>
+  - I have seperated the size of the pixels and the size of the window into a seperate file so this is kinda completed
+  - <del>Convert the grid from being array-based into a 2D vector </del>
+- <del>Implementing density-based gravity instead of uniform gravity</del>
+- <del>Streamlining the gravity calculations to be one class instead of 3</del>
 - Adding more elements (not sure which ones yet)
 - Fixing the above bugs
 - Improve performance & optimization
